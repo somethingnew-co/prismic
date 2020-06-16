@@ -13,8 +13,9 @@
     "typescript": "^3.9.5"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "clean": "lerna clean",
+    "lerna:publish": "lerna publish",
+    "lerna:bootstrap": "lerna bootstrap",
+    "lerna:clean": "lerna clean",
     "lint": "eslint packages/**/*.{ts,tsx}"
   },
   "repository": "git@github.com:somethingnew-co/prismic.git",
