@@ -17,14 +17,14 @@
   "author": "Something New",
   "license": "MIT",
   "peerDependencies": {
-    "next": "^9.4.4",
+    "next": "^9.4.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1"
   },
   "dependencies": {
-    "@stnew/prismic": "latest",
-    "@stnew/prismic-react": "latest",
-    "@stnew/prismic-types": "latest"
+    "@stnew/prismic": "0.5.0",
+    "@stnew/prismic-react": "0.5.1",
+    "@stnew/prismic-types": "0.5.0"
   },
   "devDependencies": {
     "@types/react": "^16.9.36",
