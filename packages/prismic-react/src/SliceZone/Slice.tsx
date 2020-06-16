@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { ReactNode, useState, useEffect } from 'react'
 import { usePrismic } from '..'
 import { PrismicSlice } from '@stnew/prismic-types'
@@ -47,7 +48,7 @@ export function Slice({ data, ...rest }: SliceProps): JSX.Element | null {
     if (slices && slices.hasOwnProperty(slice_type)) {
       getSliceComponent(slices[slice_type])
     }
-  }, [data, rest, slices, slice_type])
+  }, [])
 
   return Component
 }
