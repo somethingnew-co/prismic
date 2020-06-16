@@ -1,7 +1,7 @@
 import { LinkResolver } from '@stnew/prismic-types'
 
 function resolver(
-  routes: {[ key: string] : string },
+  routes: { [key: string]: string },
   style?: string,
 ): LinkResolver {
 
@@ -13,12 +13,18 @@ function resolver(
     if (route.includes('**') && doc.uid) {
       switch (style) {
         case 'next':
-          route = route.replace('**', `[${doc.type}]`)
-          break
+          if (route.includes('**/*')) {
+            route = route.replace('**/*', `[...${doc.type}]`)
+          } else {
+            route = route.replace('**', `[${doc.type}]`)
+          } break
         case 'prismic':
         default:
-          route = route.replace('**', doc.uid)
-          break
+          if (route.includes('**/*')) {
+            route = route.replace('**/*', doc.uid)
+          } else {
+            route = route.replace('**', doc.uid)
+          } break
       }
     }
 
