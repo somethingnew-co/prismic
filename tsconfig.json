@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "baseUrl": "./packages",
+    "paths": {
+      "@stnew/prismic": ["prismic/src"],
+      "@stnew/prismic-nextjs": ["prismic-nextjs/src"],
+      "@stnew/prismic-react": ["prismic-react/src"],
+    },
+  }
+}

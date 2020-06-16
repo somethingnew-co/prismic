@@ -1,0 +1,10 @@
+{
+  "name": "@stnew/prismic-types",
+  "version": "0.1.0",
+  "description": "Prismic typings for TypeScript",
+  "main": "index",
+  "types": "index",
+  "scripts": {},
+  "author": "Something New",
+  "license": "MIT"
+}
