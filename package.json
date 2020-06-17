@@ -1,0 +1,32 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "lerna:publish": "lerna publish",
+    "lerna:bootstrap": "lerna bootstrap",
+    "lerna:clean": "lerna clean",
+    "lint": "eslint packages/**/*.{ts,tsx}",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "repository": "git@github.com:somethingnew-co/prismic.git",
+  "homepage": "https://github.com/somethingnew-co/prismic#readme",
+  "devDependencies": {
+    "@stnew/eslint-config-typescript": "^0.1.6",
+    "@stnew/eslint-config": "^0.1.6",
+    "@testing-library/jest-dom": "^5.10.1",
+    "@testing-library/react": "^10.2.1",
+    "@types/jest": "^26.0.0",
+    "@typescript-eslint/eslint-plugin": "^3.3.0",
+    "@typescript-eslint/parser": "^3.3.0",
+    "eslint-plugin-react-hooks": "^4.0.4",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint": "^7.2.0",
+    "jest": "^26.0.1",
+    "lerna": "^3.22.1",
+    "react-dom": "^16.13.1",
+    "react": "^16.13.1",
+    "ts-jest": "^26.1.0",
+    "typescript": "^3.9.5"
+  }
+}

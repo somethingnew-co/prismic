@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SliceZone /> 1`] = `
+<div>
+  <div>
+    <h1>
+      Hello World
+    </h1>
+  </div>
+  <div>
+    <h1>
+      Hola Mundo
+    </h1>
+  </div>
+  <div>
+    <h1>
+      Code-split Component
+    </h1>
+  </div>
+</div>
+`;

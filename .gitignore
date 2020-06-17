@@ -1,0 +1,8 @@
+node_mdoules
+.next
+out
+dist
+packages/**/package-lock.json
+
+# OS Junk
+.DS_Store

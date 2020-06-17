@@ -1,0 +1,5 @@
+export { default as PrismicContext } from './Context'
+export { default as PrismicProvider } from './Provider'
+export { default as usePrismic } from './usePrismic'
+export { SliceZone } from './SliceZone'
+export * from '@stnew/prismic'
