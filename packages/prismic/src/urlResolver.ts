@@ -6,8 +6,12 @@ function resolver(
 ): LinkResolver {
 
   return function (doc) {
-    if (!doc.type || doc.uid === routes.index) return '/'
-
+    if (
+      !doc.type
+      || doc.type === '/'
+      || doc.uid === routes.index) {
+      return '/'
+    }
     let route = routes[doc.type]
 
     if (route.includes('**') && doc.uid) {

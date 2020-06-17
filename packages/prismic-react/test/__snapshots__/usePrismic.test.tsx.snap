@@ -8,7 +8,7 @@ exports[`usePrismic 1`] = `
     </h1>
   </div>
   <div>
-    /test
+    /blog/hello-world
   </div>
 </div>
 `;

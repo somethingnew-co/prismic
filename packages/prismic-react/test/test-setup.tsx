@@ -1,5 +1,5 @@
 import React from 'react'
-import { PrismicProvider } from '../src'
+import { PrismicProvider, urlResolver } from '../src'
 import { render, RenderResult } from '@testing-library/react'
 import TestSlice from './TestSlice'
 
@@ -12,8 +12,8 @@ const sliceMap = {
 }
 
 export const testDoc = {
-  type: 'test1',
-  uid: 'test',
+  type: 'post',
+  uid: 'hello-world',
   link_type: 'Any',
   url: '',
 }
@@ -45,9 +45,18 @@ export const slices = [
   },
 ]
 
+export const routes = {
+  'index': 'homepage',
+  'page': '/**',
+  'blog': '/blog',
+  'post': '/blog/**/*',
+}
+
+const linkResolver = urlResolver(routes)
+
 export function renderWithPrismicProvider(component: JSX.Element): RenderResult {
   return render(
-    <PrismicProvider slices={sliceMap} linkResolver={() => '/test'}>
+    <PrismicProvider slices={sliceMap} linkResolver={linkResolver}>
       {component}
     </PrismicProvider>,
   )

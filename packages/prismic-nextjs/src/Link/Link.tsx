@@ -3,6 +3,7 @@ import NextLink from 'next/link'
 import { useLinkResolver } from './useLinkResolver'
 import { usePrismic } from '@stnew/prismic-react'
 import { LinkConstructor, Resolvers } from './types'
+import { PrismicDoc } from '@stnew/prismic-types'
 
 /**
  * Wrapper for 'next/link'
@@ -15,16 +16,16 @@ import { LinkConstructor, Resolvers } from './types'
  */
 
 interface LinkProps {
-  href: string;
-  uid: string;
-  query: { [key: string]: string };
-  as: React.FC<any> | 'a';
+  href: string | PrismicDoc;
+  uid?: string;
+  query?: { [key: string]: string };
+  as?: React.FC<any> | 'a';
   children: React.ReactNode;
 }
 
 function Link({
   href,
-  uid,
+  uid = '',
   query,
   as = 'a',
   children,

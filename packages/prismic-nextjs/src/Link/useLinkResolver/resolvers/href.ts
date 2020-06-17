@@ -25,7 +25,7 @@ export function resolveHref(
     const doc: PrismicDoc = {
       type: '',
       uid: '',
-      link_type: 'Any',
+      link_type: '',
       url: href,
     }
 
@@ -47,9 +47,10 @@ export function resolveHref(
       doc.uid = uid
     }
 
-    link.as = linkResolver(doc)
+    link.as = href && href !== '/' ? linkResolver(doc) : '/'
     link.href = hrefResolver ? hrefResolver(doc) : linkResolver(doc)
   }
+
 
   return link
 }
