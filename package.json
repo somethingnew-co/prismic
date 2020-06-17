@@ -16,9 +16,16 @@
     "lerna:publish": "lerna publish",
     "lerna:bootstrap": "lerna bootstrap",
     "lerna:clean": "lerna clean",
-    "lint": "eslint packages/**/*.{ts,tsx}"
+    "lint": "eslint packages/**/*.{ts,tsx}",
+    "test": "jest"
   },
   "repository": "git@github.com:somethingnew-co/prismic.git",
   "homepage": "https://github.com/somethingnew-co/prismic#readme",
-  "dependencies": {}
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.10.1",
+    "@testing-library/react": "^10.2.1",
+    "@types/jest": "^26.0.0",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0"
+  }
 }
