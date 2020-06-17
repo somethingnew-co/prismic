@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Slice /> 1`] = `
+<div>
+  <div>
+    <h1>
+      Hello World
+    </h1>
+  </div>
+</div>
+`;

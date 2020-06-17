@@ -10,6 +10,8 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.4",
     "lerna": "^3.22.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "typescript": "^3.9.5"
   },
   "scripts": {
