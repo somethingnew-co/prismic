@@ -28,15 +28,21 @@ function LinkButton({ href, children }) {
 
 ```
 
-This goes both ways. You can also pass a component to the `as` prop on Link.
+You can also pass a component to the `as` prop on Link, as long as it's an anchor.
 
 ```js
-import { Button } from 'components/Button'
+import styled from 'styled-components'
 import { Link } from '@stnew/prismic-nextjs'
+
+const Anchor = styled.a`
+  font-size: 13px;
+  color: lime;
+  text-decoration: underline;
+`
 
 function LinkButton({ href, children }) {
   return (
-    <Link as={Button} href={href}>
+    <Link as={Anchor} href={href}>
       {children}
     </Link>
   )

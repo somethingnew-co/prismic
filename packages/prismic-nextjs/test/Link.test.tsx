@@ -55,6 +55,7 @@ test('Prismic Doc', () => {
     <Link href={media}>Media link</Link>
     <Link href={web}>Web link</Link>
     <Link href={webEx}>Web link (target blank)</Link>
+    <Link href={webEx}>Web link (target blank)</Link>
   </>)
   expect(container).toMatchSnapshot()
 })
