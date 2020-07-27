@@ -1,12 +1,8 @@
 import React from 'react'
 import { LinkResolver } from '@stnew/prismic-types'
 
-interface Slice {
-  (props: any): JSX.Element;
-}
-
 interface Slices {
-  [key: string]: Promise<any> | Slice;
+  [key: string]: React.ReactType | Promise<any> ;
 }
 
 export interface Context {

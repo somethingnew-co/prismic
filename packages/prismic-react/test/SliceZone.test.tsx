@@ -29,6 +29,30 @@ const slices = [
     slice_label: null,
     slice_type: 'test_slice_3',
   },
+  {
+    primary: {
+      title: 'I have State',
+    },
+    items: [],
+    slice_label: null,
+    slice_type: 'test_slice_4',
+  },
+  {
+    primary: {
+      title: 'I am imported with State',
+    },
+    items: [],
+    slice_label: null,
+    slice_type: 'test_slice_5',
+  },
+  {
+    primary: {
+      title: 'I am named and imported with State',
+    },
+    items: [],
+    slice_label: null,
+    slice_type: 'test_slice_6',
+  },
 ]
 
 

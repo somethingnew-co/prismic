@@ -41,6 +41,13 @@ exports[`Prismic Doc 1`] = `
   >
     Web link (target blank)
   </a>
+  <a
+    href="https://somethingnew.co"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    Web link (target blank)
+  </a>
 </div>
 `;
 

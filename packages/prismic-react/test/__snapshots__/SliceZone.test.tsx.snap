@@ -17,5 +17,29 @@ exports[`<SliceZone /> 1`] = `
       Code-split Component
     </h1>
   </div>
+  <div>
+    <h1>
+      I have State
+    </h1>
+    <h2>
+      state set
+    </h2>
+  </div>
+  <div>
+    <h1>
+      I am imported with State
+    </h1>
+    <h2>
+      state set
+    </h2>
+  </div>
+  <div>
+    <h1>
+      I am named and imported with State
+    </h1>
+    <h1>
+      I am set
+    </h1>
+  </div>
 </div>
 `;
