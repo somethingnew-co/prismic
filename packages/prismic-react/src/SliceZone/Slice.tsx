@@ -56,10 +56,10 @@ export const Slice: React.FC<Props> = ({ data, ...rest }: SliceProps) => {
       getSliceComponent(slices[slice_type])
     }
 
-    () => {
+    return () => {
       componentIsMounted.current = false
     }
-  }, [data])
+  }, [])
 
   return Component
 }
