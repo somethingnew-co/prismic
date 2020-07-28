@@ -1,6 +1,6 @@
 # @stnew/prismic-react
 
-`@stnew/prismic-react` has peerDepenendencies of `react`, `react-dom`. This package assumes you have a basic React app running and have set up the Prismic client.
+`@stnew/prismic-react` has peerDepenendencies of `react` and `react-dom`. This package assumes you have a basic React app running and have set up the Prismic client.
 
 This package exports:
 
@@ -8,7 +8,7 @@ This package exports:
 - `PrismicProvider` - The provider wrapper for passing context to props
 - `SliceZone` - A component to render slices from Prismic
 - `usePrismic` - a hook to access PrismicContext
-- `*` from [@stnew/prismic](/packages/prismic)
+- `urlResolver` from [@stnew/prismic](/packages/prismic) ([npm](https://www.npmjs.com/package/@stnew/prismic))
 
 ## PrismicContext
 
@@ -135,8 +135,6 @@ function App() {
 // ... or pass to SliceZone...
 function Page() {
   return <SliceZone data={data.body} slices={sliceMap}>
-}
-
 }
 ```
 
