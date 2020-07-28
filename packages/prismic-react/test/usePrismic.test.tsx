@@ -6,11 +6,11 @@ import { act } from '@testing-library/react'
 
 function UsePrismicExample(): JSX.Element {
   const {
-    slices,
+    sliceMap,
     linkResolver,
   } = usePrismic()
 
-  const Slice = slices.test_slice_1 as (props: any) => JSX.Element
+  const Slice = sliceMap.get('test_slice_1') as (props: any) => JSX.Element
   const data = sliceData[0]
   return (
     <>

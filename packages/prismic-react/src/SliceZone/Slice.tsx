@@ -1,29 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from 'react'
-import { usePrismic } from '..'
 import { PrismicSlice } from '@stnew/prismic-types'
 
 interface SliceProps {
   data: PrismicSlice;
+  slice?: React.ReactType | Promise<any>;
 }
 
-export const Slice: React.FC<SliceProps> = ({ data, ...rest }: SliceProps) => {
-  const { slices } = usePrismic()
-  const { slice_type } = data
+export const Slice: React.FC<SliceProps> = ({ slice, data, ...rest }: SliceProps) => {
+  if (!slice) return null
 
-  if (slices && slices.hasOwnProperty(slice_type)) {
-    let SliceComponent: React.ReactType | Promise<any> = slices[slice_type]
-
-    if (Promise.resolve(SliceComponent) === SliceComponent) {
-      return <DynamicSlice component={SliceComponent} {...data} {...rest} />
-    }
-
-    // TypeScript complains about call signatures
-    SliceComponent = SliceComponent as React.ReactType
-    return <SliceComponent {...data} {...rest} />
+  if (Promise.resolve(slice) === slice) {
+    return <DynamicSlice component={slice} {...data} {...rest} />
   }
 
-  return null
+  const Component = slice as React.ReactType
+
+  // TypeScript complains about call signatures
+  return <Component {...data} {...rest} />
 }
 
 interface DynamicSliceProps {

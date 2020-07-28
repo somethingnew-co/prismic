@@ -1,15 +1,30 @@
 import React from 'react'
+import { usePrismic } from '..'
 import { Slice } from './Slice'
 import { PrismicSlice } from '@stnew/prismic-types'
+import { SliceMap } from '../types'
 
-function SliceZone({ slices, ...rest }: {
-  slices: PrismicSlice[];
+function SliceZone({ data, slices = {}, ...rest }: {
+  data: PrismicSlice[];
+  slices?: {[key: string]: React.ReactType | Promise<any>};
 }): JSX.Element | null {
-  if (!slices) return null
+  const { sliceMap } = usePrismic()
+
+  if (!data) return null
+
+  const mergedMap: SliceMap = new Map([
+    ...sliceMap,
+    ...Object.entries(slices),
+  ])
 
   return (
     <React.Fragment>
-      {slices.map((slice, index) => <Slice key={index} data={slice} {...rest} />)}
+      {data.map((item, index) => {
+        if (mergedMap.has(item.slice_type)) {
+          const slice = mergedMap.get(item.slice_type)
+          return <Slice slice={slice} key={index} data={item} {...rest} />
+        }
+      })}
     </React.Fragment>
   )
 }

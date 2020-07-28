@@ -41,5 +41,8 @@ exports[`<SliceZone /> 1`] = `
       I am set
     </h1>
   </div>
+  <div>
+    I am added later
+  </div>
 </div>
 `;

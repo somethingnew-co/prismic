@@ -2,7 +2,7 @@ import React from 'react'
 import { SliceZone } from '../src'
 import { act } from '@testing-library/react'
 import { renderWithPrismicProvider } from './test-setup'
-
+import { PrismicSlice } from '@stnew/prismic-types'
 
 const slices = [
   {
@@ -53,13 +53,26 @@ const slices = [
     slice_label: null,
     slice_type: 'test_slice_6',
   },
+  {
+    primary: {
+      title: 'I am added later',
+    },
+    items: [],
+    slice_label: null,
+    slice_type: 'test_slice_7',
+  },
 ]
 
+const ExtraSlice:React.FC<PrismicSlice> = ({ primary }: PrismicSlice) => <div>{primary.title}</div>
+
+const additiontalSlices = {
+  'test_slice_7': ExtraSlice,
+}
 
 test('<SliceZone />', async () => {
   const promise = Promise.resolve()
 
-  const { container } = renderWithPrismicProvider(<SliceZone slices={slices} />)
+  const { container } = renderWithPrismicProvider(<SliceZone data={slices} slices={additiontalSlices} />)
 
   await act(() => promise)
 

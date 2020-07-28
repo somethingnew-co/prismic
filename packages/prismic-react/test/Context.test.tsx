@@ -3,24 +3,20 @@ import { PrismicContext } from '../src'
 import { render } from '@testing-library/react'
 import { testDoc } from './test-setup'
 
-interface Slice { (): JSX.Element }
-
-function Slice(): JSX.Element {
-  return <div>Hello World</div>
-}
+const Slice: React.FC = () => <div>Hello World</div>
 
 test('Context', () => {
   const { container } = render(
     <PrismicContext.Provider value={{
-      slices: {
+      sliceMap: new Map(Object.entries({
         slice: Slice,
-      },
+      })),
       linkResolver: () => '/test-link',
       hrefResolver: () => '/test-href',
     }}>
       <PrismicContext.Consumer>
         {(value) => {
-          const SliceComponent = value.slices.slice as Slice
+          const SliceComponent = value.sliceMap.get('slice') as React.FC
           return (
             <div>
               <SliceComponent />

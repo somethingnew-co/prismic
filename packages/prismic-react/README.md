@@ -63,7 +63,7 @@ Pass the [`sliceMap`](#slicemap), [`linkResolver`](#urlresolver), and [`hrefReso
 
 The SliceZone component will render slices from Prismic.
 
-When you query Prismic's REST API, you'll get back a data object that contains all the fields you set up for that content type. The `body` property is a reserved key in Prismic, and it will contain all of your slices. Pass this to the `slices` prop in `SliceZone`.
+When you query Prismic's REST API, you'll get back a data object that contains all the fields you set up for that content type. The `body` property is a reserved key in Prismic, and it will contain all of your slices. Pass this to the `data` prop in `SliceZone`.
 
 ```jsx
 // pages/index.js
@@ -74,7 +74,7 @@ function Page({ data }) {
   return (
     <main>
       <h1>{data.title}</h1>
-      <SliceZone slices={data.body} />
+      <SliceZone data={data.body} />
     </main>
   )
 }
@@ -104,7 +104,7 @@ Each Slice in `data.body` is an object with all of the slice data.
 }
 ```
 
-In order for slices to be available to `SliceZone`, you'll need to setup a dictionary of all your slices. Let's create a folder called `slices` in our source directory. In here, we're going to import a few slices we've created and map them in an object. The key is the `slice_type`, the value is your component.
+In order for slices to be available to `SliceZone`, you'll need to setup a map of all your slices. The key is the `slice_type`, the value is your React component.
 
 ```jsx
 // slices/index.js
@@ -118,6 +118,25 @@ import { GoodSlice } from './GoodSlice'
 export const sliceMap = {
   'cool_slice': CoolSlice,
   'good_slice': GoodSlice,
+}
+```
+
+This map can be passed to [`<PrismicProvider>`](#PrismicProvider)'s `slices` prop to make it available to all, or at the page level by passing it to `<SliceZone>`'s `slices` prop. If you have both, it will combine them, so you can have some slices that are global and some slices specific to each page. This helps diminish bundle size.
+
+```jsx
+// Pass to PrismicProvider...
+function App() {
+  return (
+    <PrismicProvider slices={sliceMap}>
+      {...}
+    </PrismicProvider>
+}
+
+// ... or pass to SliceZone...
+function Page() {
+  return <SliceZone data={data.body} slices={sliceMap}>
+}
+
 }
 ```
 
@@ -166,12 +185,12 @@ import { usePrismic } from '@stnew/prismic-react'
 
 function Component() {
   const {
-    slices,
+    sliceMap,
     linkResolver,
     hrefResolver,
   } = usePrismic()
 
-  return <SliceZone slices={slices} />
+  return <SliceZone slices={sliceMap} />
 }
 
 ```
