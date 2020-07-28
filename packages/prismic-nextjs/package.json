@@ -1,6 +1,6 @@
 {
   "name": "@stnew/prismic-nextjs",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0",
   "description": "Prismic components and utilities for Next.js",
   "main": "dist/index",
   "types": "dist/index",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@stnew/prismic": "^1.0.0-alpha.2",
-    "@stnew/prismic-react": "^1.0.0-alpha.4",
+    "@stnew/prismic-react": "^1.0.0",
     "@stnew/prismic-types": "^1.0.0-alpha.2"
   },
   "devDependencies": {
