@@ -1,21 +1,23 @@
 import React from 'react'
 import { LinkResolver } from '@stnew/prismic-types'
 
-interface Slice {
-  (props: any): JSX.Element;
-}
+export type SliceMap = Map<string, React.ReactType | Promise<any>>
 
 interface Slices {
-  [key: string]: Promise<any> | Slice;
+  [key: string]: React.ReactType | Promise<any> ;
 }
 
-export interface Context {
-  slices: Slices;
+export interface Resolvers {
   linkResolver: LinkResolver;
   hrefResolver?: LinkResolver;
   rootResolver?: string;
 }
 
-export interface Provider extends Context {
+export interface Provider extends Resolvers {
+  slices: Slices;
   children: React.ReactNode;
+}
+
+export interface Context extends Resolvers {
+  sliceMap: SliceMap;
 }

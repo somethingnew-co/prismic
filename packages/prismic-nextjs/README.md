@@ -5,8 +5,8 @@
 This package exports:
 
 - `Link` - A wrapper for `next/link` that handles link resolution.
-- `*` from [@stnew/prismic](/packages/prismic)
-- `*` from [@stnew/prismic-react](/packages/prismic-react)
+- `urlResolver` from [@stnew/prismic](/packages/prismic) ([npm](https://www.npmjs.com/package/@stnew/prismic))
+- `PrismicContext, PrismicProvider, SliceZone, usePrismic` from [@stnew/prismic-react](/packages/prismic-react) ([npm](https://www.npmjs.com/package/@stnew/prismic-react))
 
 ## Link
 

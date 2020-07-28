@@ -1,11 +1,13 @@
 import React from 'react'
 import PrismicContext from './Context'
-import { Provider } from './types'
+import { Provider, Context } from './types'
 
 function PrismicProvider({ slices, linkResolver, hrefResolver, rootResolver, children }: Provider): JSX.Element {
 
-  const value = {
-    slices: Object.freeze(slices),
+  const sliceMap = new Map(Object.entries(slices))
+
+  const value: Context = {
+    sliceMap,
     linkResolver,
     hrefResolver,
     rootResolver,

@@ -1,14 +1,20 @@
 import React from 'react'
 import { PrismicProvider, urlResolver } from '../src'
 import { render, RenderResult } from '@testing-library/react'
-import TestSlice from './TestSlice'
+import TestSlice, { NamedTestSlice } from './TestSlice'
+import TestSliceWithState from './TestSliceWithState'
 
 const ImportedSlice = import('./TestSlice')
+const ImportedSliceWithState = import('./TestSliceWithState')
+const NamedImportedSliceWithState = import('./TestSliceWithState').then(module => module.NamedTestSliceWithState)
 
 const sliceMap = {
   'test_slice_1': TestSlice,
-  'test_slice_2': TestSlice,
+  'test_slice_2': NamedTestSlice,
   'test_slice_3': ImportedSlice,
+  'test_slice_4': TestSliceWithState,
+  'test_slice_5': ImportedSliceWithState,
+  'test_slice_6': NamedImportedSliceWithState,
 }
 
 export const testDoc = {

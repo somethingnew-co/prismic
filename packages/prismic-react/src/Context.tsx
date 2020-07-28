@@ -2,7 +2,7 @@ import { createContext } from 'react'
 import { Context } from './types'
 
 const prismicContext: Context = {
-  slices: {},
+  sliceMap: new Map(),
   linkResolver: () => '/',
   hrefResolver: () => '/',
   rootResolver: '',

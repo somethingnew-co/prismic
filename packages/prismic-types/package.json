@@ -1,6 +1,6 @@
 {
   "name": "@stnew/prismic-types",
-  "version": "0.7.1",
+  "version": "1.0.0",
   "description": "Prismic typings for TypeScript",
   "main": "index",
   "types": "index",

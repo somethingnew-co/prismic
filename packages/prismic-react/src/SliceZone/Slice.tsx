@@ -1,52 +1,72 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { ReactNode, useState, useEffect } from 'react'
-import { usePrismic } from '..'
+import React, { useState, useEffect, useRef } from 'react'
 import { PrismicSlice } from '@stnew/prismic-types'
 
 interface SliceProps {
   data: PrismicSlice;
-  children?: ReactNode;
+  slice?: React.ReactType | Promise<any>;
 }
 
-export function Slice({ data, ...rest }: SliceProps): JSX.Element | null {
-  // Set the slice component as state because it might be ansynchronous
+export const Slice: React.FC<SliceProps> = ({ slice, data, ...rest }: SliceProps) => {
+  if (!slice) return null
+
+  if (Promise.resolve(slice) === slice) {
+    return <DynamicSlice component={slice} {...data} {...rest} />
+  }
+
+  const Component = slice as React.ReactType
+
+  // TypeScript complains about call signatures
+  return <Component {...data} {...rest} />
+}
+
+interface DynamicSliceProps {
+  component: Promise<any>;
+}
+
+/**
+ * Dynamically load components via import(), which returns a Promise
+ */
+const DynamicSlice: React.FC<DynamicSliceProps> = ({ component, ...props }: DynamicSliceProps) => {
+  // Set the slice component as state because it's ansynchronous
   const [Component, setComponent] = useState<JSX.Element | null>(null)
-  const { slices } = usePrismic()
-  const { slice_type } = data
+
+  const componentIsMounted = useRef<boolean>(true)
 
   // This hook runs on mount or if slices update
   useEffect(() => {
-    async function getSliceComponent(slice: ((props: any) => JSX.Element) | Promise<any>): Promise<void> {
+    async function getSliceComponent(component: Promise<any>): Promise<void> {
+      try {
       // If slice component is an import, await for Promise resolution
-      const module = await slice
+        const module = await component
 
-      let SliceComponent: ((props: any) => JSX.Element)
+        let SliceComponent: React.ReactType
 
-      if (module.default) {
-        // Check first if module is default export...
-        SliceComponent = module.default
-      } else if (module) {
-        // ...otherwise use named export...
-        SliceComponent = module
-      } else {
-        // ...and bail if we can't find an export
-        return
-      }
-
-      if (SliceComponent) {
-        // This check is to support SSR dynamic components, i.e. next/dynamic
-        if (typeof(SliceComponent) === 'function') {
-          // eslint-disable-next-line new-cap
-          setComponent(() => SliceComponent({ ...data, ...rest }))
+        if (module.default) {
+          // Check first if module is default export...
+          SliceComponent = module.default
+        } else if (module) {
+          // ...otherwise use named export...
+          SliceComponent = module
         } else {
-          setComponent(() => <SliceComponent {...data} {...rest} />)
+          // ...and bail if we can't find an export
+          return
         }
+
+        if (componentIsMounted.current) {
+          setComponent(() => <SliceComponent { ...props} />)
+        }
+
+      } catch (error) {
+        setComponent(null)
+        throw Error(error)
       }
     }
 
-    // Check to see if slice exists in slice dictionary
-    if (slices && slices.hasOwnProperty(slice_type)) {
-      getSliceComponent(slices[slice_type])
+    getSliceComponent(component)
+
+    return () => {
+      componentIsMounted.current = false
     }
   }, [])
 
