@@ -4,6 +4,9 @@ import { render, RenderResult } from '@testing-library/react'
 import TestSlice, { NamedTestSlice } from './TestSlice'
 import TestSliceWithState from './TestSliceWithState'
 
+type DefaultParams = Parameters<typeof render>;
+type RenderUI = DefaultParams[0];
+
 const ImportedSlice = import('./TestSlice')
 const ImportedSliceWithState = import('./TestSliceWithState')
 const NamedImportedSliceWithState = import('./TestSliceWithState').then(module => module.NamedTestSliceWithState)
@@ -60,7 +63,7 @@ export const routes = {
 
 const linkResolver = urlResolver(routes)
 
-export function renderWithPrismicProvider(component: JSX.Element): RenderResult {
+export function renderWithPrismicProvider(component: RenderUI): RenderResult {
   return render(
     <PrismicProvider slices={sliceMap} linkResolver={linkResolver}>
       {component}

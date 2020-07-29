@@ -6,11 +6,11 @@ import { LinkConstructor, Resolvers } from './types'
 import { PrismicDoc } from '@stnew/prismic-types'
 
 interface LinkProps {
-  href: string | PrismicDoc;
-  uid?: string;
-  query?: { [key: string]: string };
-  as?: React.FC<any> | 'a';
-  children: React.ReactNode;
+  href: string | PrismicDoc
+  uid?: string
+  query?: { [key: string]: string }
+  as?: React.FC<any> | 'a'
+  children: React.ReactNode
 }
 
 /**

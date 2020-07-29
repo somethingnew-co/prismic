@@ -3,8 +3,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import { PrismicSlice } from '@stnew/prismic-types'
 
 interface SliceProps {
-  data: PrismicSlice;
-  slice?: React.ReactType | Promise<any>;
+  data: PrismicSlice
+  slice?: React.ReactType | Promise<any>
 }
 
 export const Slice: React.FC<SliceProps> = ({ slice, data, ...rest }: SliceProps) => {
@@ -21,7 +21,7 @@ export const Slice: React.FC<SliceProps> = ({ slice, data, ...rest }: SliceProps
 }
 
 interface DynamicSliceProps {
-  component: Promise<any>;
+  component: Promise<any>
 }
 
 /**

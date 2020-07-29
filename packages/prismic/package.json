@@ -16,16 +16,7 @@
   },
   "author": "Something New",
   "license": "MIT",
-  "peerDependencies": {
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1"
-  },
   "dependencies": {
     "@stnew/prismic-types": "^1.0.0"
-  },
-  "devDependencies": {
-    "@types/react": "^16.9.36",
-    "@types/react-dom": "^16.9.8",
-    "typescript": "^3.9.5"
   }
 }

@@ -21,12 +21,7 @@
     "react-dom": "^16.8.1"
   },
   "dependencies": {
-    "@stnew/prismic": "^1.0.0-alpha.2",
-    "@stnew/prismic-types": "^1.0.0-alpha.2"
-  },
-  "devDependencies": {
-    "@types/react": "^16.9.36",
-    "@types/react-dom": "^16.9.8",
-    "typescript": "^3.9.5"
+    "@stnew/prismic": "^1.0.0",
+    "@stnew/prismic-types": "^1.0.0"
   }
 }

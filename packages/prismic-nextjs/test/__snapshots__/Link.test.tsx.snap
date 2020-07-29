@@ -23,6 +23,11 @@ exports[`Prismic Doc 1`] = `
     Document link
   </a>
   <a
+    href="/?test_query=test%20query%20!%20123"
+  >
+    Document link with query
+  </a>
+  <a
     href="https://somethingnew.co/share.png"
     rel="noopener noreferrer"
     target="_blank"
@@ -48,6 +53,11 @@ exports[`Prismic Doc 1`] = `
   >
     Web link (target blank)
   </a>
+  <a
+    href="https://somethingnew.co"
+  >
+    Web link with no query
+  </a>
 </div>
 `;
 
@@ -69,6 +79,11 @@ exports[`String 1`] = `
     I am a link
   </a>
   <a
+    href="/test?test_query=test%20query%20!%20123"
+  >
+    I am a link with query
+  </a>
+  <a
     href="/blog/hello-world"
   >
     I am a link
@@ -79,6 +94,13 @@ exports[`String 1`] = `
     target="_blank"
   >
     I am a link
+  </a>
+  <a
+    href="https://somethingnew.co"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    I am a link with no query
   </a>
 </div>
 `;
