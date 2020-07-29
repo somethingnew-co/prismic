@@ -30,4 +30,4 @@ export const prismicClient = Prismic.client(apiEndpoint, { accessToken })
 
 That's it for setting up the Prismic client. You can now query documents and pages using their API. You can set up Prismic however you like, the [documentation](https://prismic.io/docs) will help you further.
 
-The next thing you'll want to do is set up a link resolver. If you're using Next.js, you'll want to set up an href resolver as well. Read up on the [`urlResolver`](../README.md#urlresolver) function on how to set that up.
+The next thing you'll want to do is set up a link resolver. If you're using Next.js, you'll want to set up an href resolver as well. Read up on the [`urlResolver`](../packages/prismic) function on how to set that up.
