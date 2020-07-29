@@ -1,6 +1,6 @@
 {
   "name": "@stnew/prismic-nextjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Prismic components and utilities for Next.js",
   "main": "dist/index",
   "types": "dist/index",
@@ -17,19 +17,13 @@
   "author": "Something New",
   "license": "MIT",
   "peerDependencies": {
-    "next": "^9.4.0",
+    "next": "^9.5.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1"
   },
   "dependencies": {
-    "@stnew/prismic": "^1.0.0-alpha.2",
-    "@stnew/prismic-react": "^1.0.0",
-    "@stnew/prismic-types": "^1.0.0-alpha.2"
-  },
-  "devDependencies": {
-    "@types/react": "^16.9.36",
-    "@types/react-dom": "^16.9.8",
-    "next": "^9.4.4",
-    "typescript": "^3.9.5"
+    "@stnew/prismic": "^1.0.1",
+    "@stnew/prismic-react": "^1.0.1",
+    "@stnew/prismic-types": "^1.0.1"
   }
 }

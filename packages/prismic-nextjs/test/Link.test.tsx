@@ -46,28 +46,33 @@ const webEx = {
   target: '_blank',
 }
 
+const testQuery = { test_query: 'test query ! 123' }
+
 test('Prismic Doc', () => {
   const { container } = renderWithPrismicProvider(<>
     <Link href={doc1}>Document link</Link>
     <Link href={doc2}>Document link</Link>
     <Link href={doc3}>Document link</Link>
     <Link href={doc4}>Document link</Link>
+    <Link href={doc1} query={testQuery}>Document link with query</Link>
     <Link href={media}>Media link</Link>
     <Link href={web}>Web link</Link>
     <Link href={webEx}>Web link (target blank)</Link>
     <Link href={webEx}>Web link (target blank)</Link>
+    <Link href={web} query={testQuery}>Web link with no query</Link>
   </>)
   expect(container).toMatchSnapshot()
 })
-
 
 test('String', () => {
   const { container } = renderWithPrismicProvider(<>
     <Link href="/">I am a link</Link>
     <Link href="/blog">I am a link</Link>
     <Link href="/test">I am a link</Link>
+    <Link href="/test" query={testQuery}>I am a link with query</Link>
     <Link href="post" uid="hello-world">I am a link</Link>
     <Link href="https://somethingnew.co">I am a link</Link>
+    <Link href="https://somethingnew.co" query={testQuery}>I am a link with no query</Link>
   </>)
   expect(container).toMatchSnapshot()
 })

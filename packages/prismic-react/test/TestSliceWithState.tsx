@@ -17,7 +17,7 @@ function TestSliceWithState({ primary }: { primary: any }): JSX.Element {
 export class NamedTestSliceWithState extends React.Component {
   title: string
   state: {
-    text: string;
+    text: string
   }
 
   constructor(props: { primary: any }) {

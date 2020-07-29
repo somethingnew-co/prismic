@@ -5,8 +5,8 @@ import { PrismicSlice } from '@stnew/prismic-types'
 import { SliceMap } from '../types'
 
 function SliceZone({ data, slices = {}, ...rest }: {
-  data: PrismicSlice[];
-  slices?: {[key: string]: React.ReactType | Promise<any>};
+  data: PrismicSlice[]
+  slices?: { [key: string]: React.ReactType | Promise<any> }
 }): JSX.Element | null {
   const { sliceMap } = usePrismic()
 
