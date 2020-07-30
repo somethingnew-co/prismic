@@ -1,11 +1,3 @@
-export interface LinkResolver {
-  (doc: PrismicLink): string
-}
-
-export interface Resolver {
-  (routes: {[ key: string] : string }, style?: string): LinkResolver
-}
-
 export interface PrismicLink {
   link_type: 'Document' | 'Web' | 'Media' | 'Any'
   url?: string
@@ -42,4 +34,20 @@ export interface PrismicText {
   type: string
   text: string
   spans: any[]
+}
+
+export interface LinkResolver {
+  (doc: PrismicLink): string
+}
+
+export type Routes = {
+  [key: string]: {
+    href: string
+    page?: string
+    root?: string
+  }
+}
+
+export interface Resolver {
+  (routes: Routes): LinkResolver
 }
