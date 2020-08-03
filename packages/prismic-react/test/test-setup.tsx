@@ -3,6 +3,7 @@ import { PrismicProvider, urlResolver } from '../src'
 import { render, RenderResult } from '@testing-library/react'
 import TestSlice, { NamedTestSlice } from './TestSlice'
 import TestSliceWithState from './TestSliceWithState'
+import { PrismicDoc } from '@stnew/prismic-types'
 
 type DefaultParams = Parameters<typeof render>;
 type RenderUI = DefaultParams[0];
@@ -20,10 +21,10 @@ const sliceMap = {
   'test_slice_6': NamedImportedSliceWithState,
 }
 
-export const testDoc = {
+export const testDoc: PrismicDoc = {
   type: 'post',
   uid: 'hello-world',
-  link_type: 'Any',
+  link_type: 'Document',
   url: '',
 }
 
@@ -55,13 +56,22 @@ export const slices = [
 ]
 
 export const routes = {
-  'index': 'homepage',
-  'page': '/**',
-  'blog': '/blog',
-  'post': '/blog/**/*',
+  'page': {
+    href: '/',
+    page: '/[[...page]]',
+    root: 'homepage',
+  },
+  'blog':{
+    href: '/blog',
+    page: '/blog',
+  },
+  'post': {
+    href: '/blog',
+    page: '/blog/[...uid]',
+  },
 }
 
-const linkResolver = urlResolver(routes)
+export const { linkResolver, hrefResolver } = urlResolver(routes)
 
 export function renderWithPrismicProvider(component: RenderUI): RenderResult {
   return render(

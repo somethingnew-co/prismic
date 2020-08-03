@@ -1,7 +1,7 @@
 import React from 'react'
 import { PrismicContext } from '../src'
 import { render } from '@testing-library/react'
-import { testDoc } from './test-setup'
+import { testDoc, linkResolver, hrefResolver } from './test-setup'
 
 const Slice: React.FC = () => <div>Hello World</div>
 
@@ -11,8 +11,8 @@ test('Context', () => {
       sliceMap: new Map(Object.entries({
         slice: Slice,
       })),
-      linkResolver: () => '/test-link',
-      hrefResolver: () => '/test-href',
+      linkResolver,
+      hrefResolver,
     }}>
       <PrismicContext.Consumer>
         {(value) => {

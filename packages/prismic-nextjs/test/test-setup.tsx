@@ -29,14 +29,22 @@ const mockRouter: NextRouter = {
 }
 
 export const routes = {
-  'index': 'homepage',
-  'page': '/**',
-  'blog': '/blog',
-  'post': '/blog/**/*',
+  'page': {
+    href: '/',
+    page: '/[[...page]]',
+    root: 'homepage',
+  },
+  'blog':{
+    href: '/blog',
+    page: '/blog',
+  },
+  'post': {
+    href: '/blog',
+    page: '/blog/[...uid]',
+  },
 }
 
-const linkResolver = urlResolver(routes)
-const hrefResolver = urlResolver(routes, 'next')
+const { linkResolver, hrefResolver } = urlResolver(routes)
 
 export function renderWithPrismicProvider(component: RenderUI):RenderResult {
   return render(

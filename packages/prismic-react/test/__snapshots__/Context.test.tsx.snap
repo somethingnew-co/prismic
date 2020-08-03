@@ -7,10 +7,10 @@ exports[`Context 1`] = `
       Hello World
     </div>
     <div>
-      /test-link
+      /blog/hello-world
     </div>
     <div>
-      /test-href
+      /blog/[...uid]
     </div>
   </div>
 </div>
