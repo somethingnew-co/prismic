@@ -1,7 +1,9 @@
 import { usePrismic } from '../src'
 
 import React from 'react'
-import { renderWithPrismicProvider, slices as sliceData, testDoc } from './test-setup'
+import { renderWithPrismicProvider } from './test-setup'
+import { testDoc, slices as sliceData } from '../../../test/test-utils'
+
 import { act } from '@testing-library/react'
 
 function UsePrismicExample(): JSX.Element {

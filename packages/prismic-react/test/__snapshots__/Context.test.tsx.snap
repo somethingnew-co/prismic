@@ -4,7 +4,9 @@ exports[`Context 1`] = `
 <div>
   <div>
     <div>
-      Hello World
+      <h1>
+        Hello World
+      </h1>
     </div>
     <div>
       /blog/hello-world

@@ -1,9 +1,10 @@
 import { jest } from '@jest/globals'
 import React from 'react'
-import { urlResolver, PrismicProvider } from '../src'
+import { PrismicProvider } from '../src'
 import { render, RenderResult } from '@testing-library/react'
 import { RouterContext } from 'next/dist/next-server/lib/router-context'
 import { NextRouter } from 'next/router'
+import { linkResolver, hrefResolver } from '../../../test/test-utils'
 
 type DefaultParams = Parameters<typeof render>;
 type RenderUI = DefaultParams[0];
@@ -28,23 +29,6 @@ const mockRouter: NextRouter = {
   isFallback: false,
 }
 
-export const routes = {
-  'page': {
-    href: '/',
-    page: '/[[...page]]',
-    root: 'homepage',
-  },
-  'blog':{
-    href: '/blog',
-    page: '/blog',
-  },
-  'post': {
-    href: '/blog',
-    page: '/blog/[...uid]',
-  },
-}
-
-const { linkResolver, hrefResolver } = urlResolver(routes)
 
 export function renderWithPrismicProvider(component: RenderUI):RenderResult {
   return render(
