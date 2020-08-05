@@ -1,10 +1,12 @@
 import { usePrismic } from '../src'
+import { act } from '@testing-library/react'
 
 import React from 'react'
 import { renderWithPrismicProvider } from './test-setup'
-import { testDoc, slices as sliceData } from '../../../test/test-utils'
+import { docs, slices as sliceData } from '../../../test/data'
+import { PrismicDoc } from '@stnew/prismic-types'
 
-import { act } from '@testing-library/react'
+const testDoc = docs.find(doc => doc.type === 'blog_post')
 
 function UsePrismicExample(): JSX.Element {
   const {
@@ -14,10 +16,11 @@ function UsePrismicExample(): JSX.Element {
 
   const Slice = sliceMap.get('test_slice_1') as (props: any) => JSX.Element
   const data = sliceData[0]
+
   return (
     <>
       <Slice {...data} />
-      <div>{linkResolver(testDoc)}</div>
+      <div>{linkResolver(testDoc as PrismicDoc)}</div>
     </>
   )
 }

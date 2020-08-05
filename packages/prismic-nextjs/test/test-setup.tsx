@@ -4,7 +4,7 @@ import { PrismicProvider } from '../src'
 import { render, RenderResult } from '@testing-library/react'
 import { RouterContext } from 'next/dist/next-server/lib/router-context'
 import { NextRouter } from 'next/router'
-import { linkResolver, hrefResolver } from '../../../test/test-utils'
+import { linkResolver, hrefResolver } from '../../../test/resolvers'
 
 type DefaultParams = Parameters<typeof render>;
 type RenderUI = DefaultParams[0];
@@ -29,7 +29,6 @@ const mockRouter: NextRouter = {
   isFallback: false,
 }
 
-
 export function renderWithPrismicProvider(component: RenderUI):RenderResult {
   return render(
     <RouterContext.Provider value={mockRouter}>
@@ -37,7 +36,6 @@ export function renderWithPrismicProvider(component: RenderUI):RenderResult {
         slices={{}}
         linkResolver={linkResolver}
         hrefResolver={hrefResolver}
-        rootResolver="page"
       >
         {component}
       </PrismicProvider>

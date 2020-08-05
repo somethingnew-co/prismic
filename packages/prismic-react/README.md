@@ -55,9 +55,8 @@ Prop         | Required | Type
 slices       | Yes      | `{ [key: string]: (props: any) => Element }`
 linkResolver | Yes      | `(doc?: PrismicDoc) => string`
 hrefResolver | No       | `(doc?: PrismicDoc) => string`
-rootResolver | No       | `string`
 
-Pass the [`sliceMap`](#slicemap), [`linkResolver`](#urlresolver), and [`hrefResolver`](#urlresolver) to their respective props. If you're using a "root" page type, pass the type to the root resolver.
+Pass the [`sliceMap`](#slicemap), [`linkResolver`](/packages/prismic), and [`hrefResolver`](/packages/prismic) to their respective props.
 
 ## SliceZone
 

@@ -5,7 +5,6 @@ const prismicContext: Context = {
   sliceMap: new Map(),
   linkResolver: () => '/',
   hrefResolver: () => '/',
-  rootResolver: '',
 }
 
 const PrismicContext = createContext(prismicContext)

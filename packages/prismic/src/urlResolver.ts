@@ -1,21 +1,36 @@
-import { LinkResolver, Routes, PrismicLink } from '@stnew/prismic-types'
+import { LinkResolver, Routes, PrismicDoc, Route } from '@stnew/prismic-types'
 
 interface Resolvers {
   linkResolver: LinkResolver
   hrefResolver: LinkResolver
 }
 
+export function withUID(doc: PrismicDoc, route: Route): string {
+  const { uid } = doc
+  const { href, root } = route
+
+  if (uid && root && uid === root) {
+    return href
+  }
+
+  const append: string = uid
+    ? href.endsWith('/')
+      ? uid
+      : `/${uid}`
+    : ''
+
+  return href.concat(append)
+}
+
 function urlResolver(routes: Routes): Resolvers {
   const resolveLink = (key: string) =>
-    (doc: PrismicLink): string => {
+    (doc: PrismicDoc): string => {
       if (!doc.type) return '/'
 
       const route = routes[doc.type]
 
       if (key === 'href') {
-        const uid = doc.uid ? doc.uid : null
-        if (uid && uid === route.root) return route[key]
-        return route[key] + (uid ? route[key].endsWith('/') ? uid : `/${uid}` : '')
+        return withUID(doc, route)
       }
 
       if (key === 'page') return route[key] || '_error'

@@ -2,30 +2,7 @@ import React from 'react'
 import { PrismicLink } from '../src'
 import { renderWithPrismicProvider } from './test-setup'
 import { PrismicDoc } from '@stnew/prismic-types'
-
-const doc1: PrismicDoc = {
-  type: 'page',
-  uid: 'homepage',
-  link_type: 'Document',
-}
-
-const doc2: PrismicDoc = {
-  type: 'page',
-  uid: 'other-page',
-  link_type: 'Document',
-}
-
-const doc3: PrismicDoc = {
-  type: 'blog',
-  uid: '',
-  link_type: 'Document',
-}
-
-const doc4: PrismicDoc = {
-  type: 'post',
-  uid: 'hello-world',
-  link_type: 'Document',
-}
+import { docs } from '../../../test/data'
 
 const media: PrismicDoc = {
   link_type: 'Media',
@@ -46,15 +23,29 @@ const webEx: PrismicDoc = {
 const testQuery = { query: { test_query: 'test query ! 123' } }
 
 test('Prismic Doc', () => {
+  for (let i = 0; i < docs.length; i += 1) {
+    const { container } = renderWithPrismicProvider(
+      <PrismicLink link={docs[i]}>Document link</PrismicLink>,
+    )
+    expect(container).toMatchSnapshot()
+  }
+})
+
+test('Prismic Doc with Query', () => {
+  for (let i = 0; i < docs.length; i += 1) {
+    const { container } = renderWithPrismicProvider(
+      <PrismicLink link={docs[i]} urlObject={testQuery}>Document link</PrismicLink>,
+    )
+    expect(container).toMatchSnapshot()
+  }
+})
+
+test('Other Links', () => {
   const { container } = renderWithPrismicProvider(<>
-    <PrismicLink link={doc1}>Document link</PrismicLink>
-    <PrismicLink link={doc2}>Document link</PrismicLink>
-    <PrismicLink link={doc3}>Document link</PrismicLink>
-    <PrismicLink link={doc4}>Document link</PrismicLink>
-    <PrismicLink link={doc2} urlObject={testQuery}>Document link with query</PrismicLink>
     <PrismicLink link={media}>Media link</PrismicLink>
     <PrismicLink link={web}>Web link</PrismicLink>
     <PrismicLink link={webEx}>Web link (target blank)</PrismicLink>
   </>)
+
   expect(container).toMatchSnapshot()
 })

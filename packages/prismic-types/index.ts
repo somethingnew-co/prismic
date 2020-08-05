@@ -40,12 +40,14 @@ export interface LinkResolver {
   (doc: PrismicLink): string
 }
 
-export type Routes = {
-  [key: string]: {
-    href: string
-    page?: string
-    root?: string
-  }
+export interface Route {
+  href: string
+  page?: string
+  root?: string
+}
+
+export interface Routes {
+  [key: string]: Route
 }
 
 export interface Resolver {

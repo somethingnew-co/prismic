@@ -12,7 +12,7 @@ exports[`Context 1`] = `
       /blog/hello-world
     </div>
     <div>
-      /blog/[...uid]
+      /blog/[post]
     </div>
   </div>
 </div>

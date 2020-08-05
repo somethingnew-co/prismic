@@ -1,32 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Prismic Doc 1`] = `
+exports[`Other Links 1`] = `
 <div>
-  <a
-    href="/"
-  >
-    Document link
-  </a>
-  <a
-    href="/other-page"
-  >
-    Document link
-  </a>
-  <a
-    href="/blog"
-  >
-    Document link
-  </a>
-  <a
-    href="/blog/hello-world"
-  >
-    Document link
-  </a>
-  <a
-    href="/other-page?test_query=test%20query%20!%20123"
-  >
-    Document link with query
-  </a>
   <a
     href="https://somethingnew.co/share.png"
     rel="noopener noreferrer"
@@ -45,6 +20,266 @@ exports[`Prismic Doc 1`] = `
     target="_blank"
   >
     Web link (target blank)
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc 1`] = `
+<div>
+  <a
+    href="/"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc 2`] = `
+<div>
+  <a
+    href="/services"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc 3`] = `
+<div>
+  <a
+    href="/developers"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc 4`] = `
+<div>
+  <a
+    href="/company"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc 5`] = `
+<div>
+  <a
+    href="/pricing"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc 6`] = `
+<div>
+  <a
+    href="/teams"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc 7`] = `
+<div>
+  <a
+    href="/teams/blue-team"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc 8`] = `
+<div>
+  <a
+    href="/teams/red-team"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc 9`] = `
+<div>
+  <a
+    href="/blog"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc 10`] = `
+<div>
+  <a
+    href="/blog/hello-world"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc 11`] = `
+<div>
+  <a
+    href="/blog/hola-mundo"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc 12`] = `
+<div>
+  <a
+    href="/privacy"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc 13`] = `
+<div>
+  <a
+    href="/privacy/terms-and-conditions"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc with Query 1`] = `
+<div>
+  <a
+    href="/?test_query=test%20query%20!%20123"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc with Query 2`] = `
+<div>
+  <a
+    href="/services?test_query=test%20query%20!%20123"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc with Query 3`] = `
+<div>
+  <a
+    href="/developers?test_query=test%20query%20!%20123"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc with Query 4`] = `
+<div>
+  <a
+    href="/company?test_query=test%20query%20!%20123"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc with Query 5`] = `
+<div>
+  <a
+    href="/pricing?test_query=test%20query%20!%20123"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc with Query 6`] = `
+<div>
+  <a
+    href="/teams?test_query=test%20query%20!%20123"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc with Query 7`] = `
+<div>
+  <a
+    href="/teams/blue-team?test_query=test%20query%20!%20123"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc with Query 8`] = `
+<div>
+  <a
+    href="/teams/red-team?test_query=test%20query%20!%20123"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc with Query 9`] = `
+<div>
+  <a
+    href="/blog?test_query=test%20query%20!%20123"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc with Query 10`] = `
+<div>
+  <a
+    href="/blog/hello-world?test_query=test%20query%20!%20123"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc with Query 11`] = `
+<div>
+  <a
+    href="/blog/hola-mundo?test_query=test%20query%20!%20123"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc with Query 12`] = `
+<div>
+  <a
+    href="/privacy?test_query=test%20query%20!%20123"
+  >
+    Document link
+  </a>
+</div>
+`;
+
+exports[`Prismic Doc with Query 13`] = `
+<div>
+  <a
+    href="/privacy/terms-and-conditions?test_query=test%20query%20!%20123"
+  >
+    Document link
   </a>
 </div>
 `;
