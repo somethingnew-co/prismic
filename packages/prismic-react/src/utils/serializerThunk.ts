@@ -9,7 +9,7 @@ function htmlSerializerThunk(hash: Hash): HTMLSerializer<React.ReactNode> {
 
     if (node) {
       const [component, props] = node
-      let propagator = props
+      let propagator = props || {}
 
       if (typeof props === 'function') {
         propagator = props(element)

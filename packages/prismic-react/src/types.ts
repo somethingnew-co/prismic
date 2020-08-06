@@ -32,5 +32,5 @@ export interface Propagator {
 }
 
 export type Hash = {
-  [E in Elements]?: [React.ReactType, PropsObject | Propagator]
+  [E in Elements]?: [React.ReactType, (PropsObject | Propagator)?]
 }

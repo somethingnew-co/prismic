@@ -19,9 +19,9 @@ const elementMap: Hash = {
   [Elements.heading1]: ['h1', { 'aria-hidden': true }],
   [Elements.heading2]: ['h2', { className: 'h2' }],
   [Elements.heading3]: ['h3', { className: 'test-class' }],
-  [Elements.paragraph]: ['p', {}],
+  [Elements.paragraph]: ['p'],
   [Elements.list]: ['ul', { className: 'list' }],
-  [Elements.listItem]: ['li', {}],
+  [Elements.listItem]: ['li'],
   [Elements.hyperlink]: ['a', linkProps],
   [Elements.image]: ['img', imgProps],
 }
