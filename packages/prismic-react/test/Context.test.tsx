@@ -19,7 +19,10 @@ test('Context', () => {
     }}>
       <PrismicContext.Consumer>
         {(value) => {
-          const SliceComponent = value.sliceMap.get('slice') as React.ReactType
+          const SliceComponent = value.sliceMap?.get('slice') as React.ReactType
+
+          if (!SliceComponent) return null
+
           return (
             <div>
               <SliceComponent {...slices[0]}/>

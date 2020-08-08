@@ -10,7 +10,7 @@ function SliceZone({ data, slices = {}, ...rest }: {
 }): JSX.Element | null {
   const { sliceMap } = usePrismic()
 
-  if (!data) return null
+  if (!data || !sliceMap) return null
 
   const mergedMap: SliceMap = new Map([
     ...sliceMap,

@@ -8,11 +8,13 @@ import { PrismicDoc } from '@stnew/prismic-types'
 
 const testDoc = docs.find(doc => doc.type === 'blog_post')
 
-function UsePrismicExample(): JSX.Element {
+const UsePrismicExample: React.FC = () => {
   const {
     sliceMap,
     linkResolver,
   } = usePrismic()
+
+  if (!sliceMap) return null
 
   const Slice = sliceMap.get('test_slice_1') as (props: any) => JSX.Element
   const data = sliceData[0]
