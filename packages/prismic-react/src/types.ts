@@ -2,10 +2,12 @@ import React from 'react'
 import { Elements, HTMLSerializer } from 'prismic-reactjs'
 import { LinkResolver } from '@stnew/prismic-types'
 
-export type SliceMap = Map<string, React.ReactType | Promise<any>>
+export type Slice = React.ReactType | Promise<any>
 
-interface Slices {
-  [key: string]: React.ReactType | Promise<any>
+export type SliceMap = Map<string, Slice>
+
+export interface Slices {
+  [key: string]: Slice
 }
 
 export interface Resolvers {

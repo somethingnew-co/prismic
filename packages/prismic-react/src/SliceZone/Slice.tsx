@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from 'react'
 import { PrismicSlice } from '@stnew/prismic-types'
+import { Slice as SliceType } from '../types'
 
 interface SliceProps {
   data: PrismicSlice
-  slice?: React.ReactType | Promise<any>
+  slice?: SliceType
 }
 
 export const Slice: React.FC<SliceProps> = ({ slice, data, ...rest }: SliceProps) => {
