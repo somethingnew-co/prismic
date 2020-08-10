@@ -1,24 +1,18 @@
-export interface LinkResolver {
-  (doc: PrismicDoc): string
-}
-
-export interface Resolver {
-  (routes: {[ key: string] : string }, style?: string): LinkResolver
-}
-
-export interface PrismicDoc {
-  link_type: string
-  url: string
+export interface PrismicLink {
+  link_type: 'Document' | 'Web' | 'Media' | 'Any'
+  url?: string
   id?: string
-  type?: string
-  tags?: string[]
-  slug?: string
   lang?: string
+  slug?: string
+  tags?: string[]
+  type?: string
   uid?: string
-  data?: any
   isBroken?: boolean
   target?: string
+  data?: any
 }
+
+export type PrismicDoc = PrismicLink
 
 export interface PrismicSlice {
   slice_type: string
@@ -36,22 +30,26 @@ export interface PrismicDocument {
   body: PrismicSlice[]
 }
 
-export interface PrismicLink {
-  link_type: string
-  url: string
-  id?: string
-  type?: string
-  tags?: string[]
-  slug?: string
-  lang?: string
-  uid?: string
-  data?: any
-  isBroken?: boolean
-  target?: string
-}
-
 export interface PrismicText {
   type: string
   text: string
   spans: any[]
+}
+
+export interface LinkResolver {
+  (doc: PrismicLink): string
+}
+
+export interface Route {
+  href: string
+  page?: string
+  root?: string
+}
+
+export interface Routes {
+  [key: string]: Route
+}
+
+export interface Resolver {
+  (routes: Routes): LinkResolver
 }

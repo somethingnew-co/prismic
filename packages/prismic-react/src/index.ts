@@ -1,5 +1,7 @@
 export { default as PrismicContext } from './Context'
 export { default as PrismicProvider } from './Provider'
 export { default as usePrismic } from './usePrismic'
+export { default as useHtmlSerializer } from './useHtmlSerializer'
 export { SliceZone } from './SliceZone'
+export { default as htmlSerializerThunk } from './utils/serializerThunk'
 export * from '@stnew/prismic'

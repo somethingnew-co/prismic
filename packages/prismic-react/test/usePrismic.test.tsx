@@ -1,21 +1,28 @@
 import { usePrismic } from '../src'
-
-import React from 'react'
-import { renderWithPrismicProvider, slices as sliceData, testDoc } from './test-setup'
 import { act } from '@testing-library/react'
 
-function UsePrismicExample(): JSX.Element {
+import React from 'react'
+import { renderWithPrismicProvider } from './test-setup'
+import { docs, slices as sliceData } from '../../../test/data'
+import { PrismicDoc } from '@stnew/prismic-types'
+
+const testDoc = docs.find(doc => doc.type === 'blog_post')
+
+const UsePrismicExample: React.FC = () => {
   const {
     sliceMap,
     linkResolver,
   } = usePrismic()
 
+  if (!sliceMap) return null
+
   const Slice = sliceMap.get('test_slice_1') as (props: any) => JSX.Element
   const data = sliceData[0]
+
   return (
     <>
       <Slice {...data} />
-      <div>{linkResolver(testDoc)}</div>
+      <div>{linkResolver(testDoc as PrismicDoc)}</div>
     </>
   )
 }

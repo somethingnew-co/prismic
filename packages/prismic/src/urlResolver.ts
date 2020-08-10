@@ -1,39 +1,47 @@
-import { LinkResolver } from '@stnew/prismic-types'
+import { LinkResolver, Routes, PrismicDoc, Route } from '@stnew/prismic-types'
 
-function resolver(
-  routes: { [key: string]: string },
-  style?: string,
-): LinkResolver {
-
-  return function (doc) {
-    if (
-      !doc.type
-      || doc.type === '/'
-      || doc.uid === routes.index) {
-      return '/'
-    }
-    let route = routes[doc.type]
-
-    if (route.includes('**') && doc.uid) {
-      switch (style) {
-        case 'next':
-          if (route.includes('**/*')) {
-            route = route.replace('**/*', `[...${doc.type}]`)
-          } else {
-            route = route.replace('**', `[${doc.type}]`)
-          } break
-        case 'prismic':
-        default:
-          if (route.includes('**/*')) {
-            route = route.replace('**/*', doc.uid)
-          } else {
-            route = route.replace('**', doc.uid)
-          } break
-      }
-    }
-
-    return route
-  }
+interface Resolvers {
+  linkResolver: LinkResolver
+  hrefResolver: LinkResolver
 }
 
-export default resolver
+export function withUID(doc: PrismicDoc, route: Route): string {
+  const { uid } = doc
+  const { href, root } = route
+
+  if (uid && root && uid === root) {
+    return href
+  }
+
+  const append: string = uid
+    ? href.endsWith('/')
+      ? uid
+      : `/${uid}`
+    : ''
+
+  return href.concat(append)
+}
+
+function urlResolver(routes: Routes): Resolvers {
+  const resolveLink = (key: string) =>
+    (doc: PrismicDoc): string => {
+      if (!doc.type) return '/'
+
+      const route = routes[doc.type]
+
+      if (key === 'href') {
+        return withUID(doc, route)
+      }
+
+      if (key === 'page') return route[key] || '_error'
+
+      return '/'
+    }
+
+  const linkResolver = resolveLink('href')
+  const hrefResolver = resolveLink('page')
+
+  return { linkResolver, hrefResolver }
+}
+
+export default urlResolver

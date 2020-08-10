@@ -1,23 +1,38 @@
 import React from 'react'
+import { Elements, HTMLSerializer } from 'prismic-reactjs'
 import { LinkResolver } from '@stnew/prismic-types'
 
-export type SliceMap = Map<string, React.ReactType | Promise<any>>
+export type Slice = React.ReactType | Promise<any>
 
-interface Slices {
-  [key: string]: React.ReactType | Promise<any> ;
+export type SliceMap = Map<string, Slice>
+
+export interface Slices {
+  [key: string]: Slice
 }
 
 export interface Resolvers {
-  linkResolver: LinkResolver;
-  hrefResolver?: LinkResolver;
-  rootResolver?: string;
+  linkResolver: LinkResolver
+  hrefResolver?: LinkResolver
 }
 
 export interface Provider extends Resolvers {
-  slices: Slices;
-  children: React.ReactNode;
+  slices?: Slices
+  htmlSerializer?: HTMLSerializerElementMap
 }
 
 export interface Context extends Resolvers {
-  sliceMap: SliceMap;
+  sliceMap?: SliceMap
+  htmlSerializer?: HTMLSerializer<React.ReactNode>
+}
+
+// HTMLSerializer types
+export interface HTMLSerializerProps {
+  [prop: string]: any
+}
+export interface HTMLSerializerPropsFunction {
+  (element?: any): HTMLSerializerProps
+}
+
+export type HTMLSerializerElementMap = {
+  [E in Elements]?: [React.ReactType, (HTMLSerializerProps | HTMLSerializerPropsFunction)?]
 }

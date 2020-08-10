@@ -1,2 +1,2 @@
-export { Link } from './Link'
+export { PrismicLink } from './PrismicLink'
 export * from '@stnew/prismic-react'
