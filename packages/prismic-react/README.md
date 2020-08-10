@@ -4,15 +4,17 @@
 
 This package exports:
 
-- `PrismicContext` - The React context containing slices and resolver functions
-- `PrismicProvider` - The provider wrapper for passing context to props
-- `SliceZone` - A component to render slices from Prismic
-- `usePrismic` - a hook to access PrismicContext
+- [`PrismicContext`](#prismiccontext) - The React context containing slices and resolver functions
+- [`PrismicProvider`](#prismicprovider) - The provider wrapper for passing context to props
+- [`SliceZone`](#slicezone) - A component to render slices from Prismic
+- [`usePrismic`](#useprismic) - a hook to access PrismicContext
+- [`useSerializer`](#useserializer) - a hook to create an HTMLSerializer
+- [`htmlSerializerThunk`](#htmlserializerthunk) - A wrapper function to create an HTMLSerializer
 - `urlResolver` from [@stnew/prismic](/packages/prismic) ([npm](https://www.npmjs.com/package/@stnew/prismic))
 
 ## PrismicContext
 
-For the most part, you'll want to use the `usePrismic` hook to access context. If not, it's exported from the package main:
+For the most part, you'll want to use the [`usePrismic` hook](#useprismic) to access context. If not, it's exported from the package main:
 
 ```jsx
 import { PrismicContext } from '@stnew/prismic-react'
@@ -24,7 +26,6 @@ function Consumer() {
     </PrismicContext.Consumer>
   )
 }
-
 ```
 
 ## PrismicProvider
@@ -36,6 +37,7 @@ In order for `@stnew/prismic` components to work, you'll need to wrap your App i
 import { PrismicProvider } from '@stnew/prismic'
 import { sliceMap } from 'slices'
 import { linkResolver, hrefResolver } from 'lib/prismic'
+import { elementsMap } from 'components/TextField'
 
 function App({ Component, pageProps }) {
   return (
@@ -43,6 +45,7 @@ function App({ Component, pageProps }) {
       slices={sliceMap}
       linkResolver={linkResolver}
       hrefResolver={hrefResolver}
+      htmlSerializer={elementsMap}
     >
       <Component {...pageProps}>
     </PrismicProvider>
@@ -50,13 +53,14 @@ function App({ Component, pageProps }) {
 }
 ```
 
-Prop         | Required | Type
------------- | -------- | ------------------------------------------------
-slices       | Yes      | `{ [key: string]: (props: any) => Element }`
-linkResolver | Yes      | `(doc?: PrismicDoc) => string`
-hrefResolver | No       | `(doc?: PrismicDoc) => string`
+Prop           | Required | Type
+-------------- | -------- | ---------------------------------------------
+slices         | Yes      | `{ [key: string]: (props: any) => Element }`
+linkResolver   | Yes      | `(doc?: PrismicDoc) => string`
+hrefResolver   | No       | `(doc?: PrismicDoc) => string`
+htmlSerializer | No       | `{ [Element]: [React.ReactNode, { ...props }]`
 
-Pass the [`sliceMap`](#slicemap), [`linkResolver`](/packages/prismic), and [`hrefResolver`](/packages/prismic) to their respective props.
+Pass the [`sliceMap`](#slicemap), [`linkResolver`](/packages/prismic), and [`hrefResolver`](/packages/prismic) to their respective props. See the [HTML Serializer](#html-serializer) section to learn more it's usage.
 
 ## SliceZone
 
@@ -185,9 +189,113 @@ function Component() {
     sliceMap,
     linkResolver,
     hrefResolver,
+    htmlSerializer,
   } = usePrismic()
 
   return <SliceZone slices={sliceMap} />
 }
+```
 
+## HTML Serializer
+
+Using the serializer requires that you've installed `prismic-reactjs`. If you haven't, install with
+
+```sh
+npm install prismic-reactjs
+```
+
+Prismic's RichText field returns structured data that needs to be parsed to render as HTML. Wwile you could write your own parser, we recommend using the `RichText` component to render it instead.
+
+```jsx
+import { RichText } from 'prsimic-reactjs'
+
+function Page({ data }) {
+  return (
+    <main>
+      <h1>{data.title}</h1>
+      <RichText render={data.body_copy} />
+    </main>
+  )
+}
+```
+
+The default `RichText` component will render pretty generic HTML. If you need to use special text components, add classNames and props, or render custom HTML, you'll need to write and HTML Serializer
+
+### Mapping the elements
+
+The serializer accepts a special mapping
+
+```jsx
+import { Elements } from 'prsimic-reactjs'
+import Link from 'next/link'
+
+const elementsMap = {
+  [Elements.heading1]: ['h1', { className: 'heading-1' }],
+  [Elements.heading2]: ['h2', { className: 'heading-2' }],
+  [Elements.paragraph]: ['p', { className: 'paragraph' }],
+
+  [Elements.hyperlink]: [Link, ({ data }) => { href: data.url }]
+  [Elements.hyperlink]: ['img', ({ data }) => { href: data.src }]
+}
+```
+
+You can then pass this map the the `htmlSerializer` prop
+
+```js
+function App() {
+  return (
+    <PrismicProvider
+      htmlSerializer={elementsMap}
+      linkResolver={linkResolver}
+    >
+      {...app}
+    </PrismicProvider>
+  )
+}
+```
+
+The serializer will be returned by the `usePrismic` hook.
+
+```js
+import { RichText } from 'prsimic-reactjs'
+
+function TextField({ render }) {
+  const { htmlSerializer, linkResolver } = usePrismic()
+  return <RichText
+    render={render}
+    htmlSerializer={htmlSerializer}
+    linkResolver={linkResolver}
+  />
+}
+```
+
+### useHtmlSerializer
+
+If you only need to use the HTML serializer in one component, it might make sense to use it as a hook
+
+```js
+import { RichText } from 'prsimic-reactjs'
+import { elementsMap } from 'lib/prismic/serializer'
+import { useHtmlSerializer } from '@stnew/prismic-react'
+
+function TextField({ render }) {
+  const htmlSerializer = useHtmlSerializer(elementMap)
+
+  return <RichText
+    render={render}
+    htmlSerializer={htmlSerializer}
+    linkResolver={linkResolver}
+  />
+}
+```
+
+### htmlSerializerThunk
+
+Besides a hook or provider, you can export the wrapper function that creates the serializer function.
+
+```js
+import { elementsMap } from 'lib/prismic/serializer'
+import { useHtmlSerializer } from '@stnew/prismic-react'
+
+const htmlSerializer = htmlSerializerThunk(elementMap)
 ```
