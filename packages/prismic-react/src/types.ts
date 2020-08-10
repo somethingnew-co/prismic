@@ -15,7 +15,7 @@ export interface Resolvers {
 
 export interface Provider extends Resolvers {
   slices?: Slices
-  htmlSerializer?: Hash
+  htmlSerializer?: HTMLSerializerElementMap
 }
 
 export interface Context extends Resolvers {
@@ -24,13 +24,13 @@ export interface Context extends Resolvers {
 }
 
 // HTMLSerializer types
-export interface PropsObject {
+export interface HTMLSerializerProps {
   [prop: string]: any
 }
-export interface Propagator {
-  (element?: any): PropsObject
+export interface HTMLSerializerPropsFunction {
+  (element?: any): HTMLSerializerProps
 }
 
-export type Hash = {
-  [E in Elements]?: [React.ReactType, (PropsObject | Propagator)?]
+export type HTMLSerializerElementMap = {
+  [E in Elements]?: [React.ReactType, (HTMLSerializerProps | HTMLSerializerPropsFunction)?]
 }

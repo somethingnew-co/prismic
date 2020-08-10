@@ -3,19 +3,19 @@ import { RichText, RichTextSpan, Elements } from 'prismic-reactjs'
 import { htmlSerializerThunk } from '../src'
 import { render } from '@testing-library/react'
 import { linkResolver } from '../../../test/resolvers'
-import { Hash, Propagator } from '../src/types'
+import { HTMLSerializerElementMap, HTMLSerializerPropsFunction } from '../src/types'
 
-const linkProps: Propagator = element => ({
+const linkProps: HTMLSerializerPropsFunction = element => ({
   link: element.data,
 })
 
-const imgProps: Propagator = element => ({
+const imgProps: HTMLSerializerPropsFunction = element => ({
   src: element.url,
   alt: element.alt || '',
   copyright: element.copyright || '',
 })
 
-const elementMap: Hash = {
+const elementMap: HTMLSerializerElementMap = {
   [Elements.heading1]: ['h1', { 'aria-hidden': true }],
   [Elements.heading2]: ['h2', { className: 'h2' }],
   [Elements.heading3]: ['h3', { className: 'test-class' }],

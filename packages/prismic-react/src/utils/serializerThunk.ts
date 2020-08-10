@@ -1,8 +1,8 @@
 import React from 'react'
 import { Elements, HTMLSerializer } from 'prismic-reactjs'
-import { Hash } from '../types'
+import { HTMLSerializerElementMap } from '../types'
 
-function htmlSerializerThunk(hash: Hash): HTMLSerializer<React.ReactNode> {
+function htmlSerializerThunk(hash: HTMLSerializerElementMap): HTMLSerializer<React.ReactNode> {
   return function (type, element, content, children, key): React.ReactNode {
 
     const node = hash[type as Elements]
