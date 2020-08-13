@@ -1,11 +1,11 @@
 import React from 'react'
 import { Elements, HTMLSerializer } from 'prismic-reactjs'
-import { HTMLSerializerElementMap } from '../types'
+import { HTMLSerializerElementMap } from './types'
 
-function htmlSerializerThunk(hash: HTMLSerializerElementMap): HTMLSerializer<React.ReactNode> {
+function serializeElements(map: HTMLSerializerElementMap): HTMLSerializer<React.ReactNode> {
   return function (type, element, content, children, key): React.ReactNode {
 
-    const node = hash[type as Elements]
+    const node = map[type as Elements]
 
     if (node) {
       const [component, props] = node
@@ -17,6 +17,7 @@ function htmlSerializerThunk(hash: HTMLSerializerElementMap): HTMLSerializer<Rea
 
       const propsWithKey = { ...propagator, key }
 
+      // <img /> elements don't have children
       if (type === Elements.image) {
         return React.createElement(component, propsWithKey)
       }
@@ -26,4 +27,4 @@ function htmlSerializerThunk(hash: HTMLSerializerElementMap): HTMLSerializer<Rea
   }
 }
 
-export default htmlSerializerThunk
+export default serializeElements

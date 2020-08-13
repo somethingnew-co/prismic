@@ -14,6 +14,56 @@ exports[`Context 1`] = `
     <div>
       /blog/[post]
     </div>
+    <h1
+      aria-hidden="true"
+    >
+      Heading 1
+    </h1>
+    <h2
+      class="h2"
+    >
+      Heading 2
+    </h2>
+    <h3
+      class="test-class"
+    >
+      Heading 3
+    </h3>
+    <p>
+      If you add another section over here, it splits into a two column layout! 
+    </p>
+    <p>
+      And text is 
+      <strong>
+        formatted
+      </strong>
+       
+      <strong>
+        correctly
+      </strong>
+      . You can even 
+      <a
+        link="[object Object]"
+      >
+        insert links
+      </a>
+       and bulleted lists!
+    </p>
+    <ul
+      class="list"
+    >
+      <li>
+        Wow, that's neat
+      </li>
+      <li>
+        Show me more!
+      </li>
+    </ul>
+    <img
+      alt="Alt Text"
+      copyright=""
+      src="https://example.com/image.png"
+    />
   </div>
 </div>
 `;

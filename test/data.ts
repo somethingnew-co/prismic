@@ -1,4 +1,5 @@
 import { PrismicDoc } from '../packages/prismic-types'
+import { Elements, RichTextSpan } from 'prismic-reactjs'
 
 export const docs: PrismicDoc[] = [
   {
@@ -120,5 +121,76 @@ export const slices = [
     items: [],
     slice_label: null,
     slice_type: 'test_slice_7',
+  },
+]
+
+export type RichTextBlock = {
+  type: Elements
+  text: string
+  spans: RichTextSpan[]
+  alt?: string
+  copyright?: string
+  dimensions?: { width: number, height: number }
+  url?: string
+};
+
+interface TextBlock extends RichTextBlock {
+  alt?: string
+  copyright?: string
+  dimensions?: { width: number, height: number }
+  url?: string
+}
+
+export const richTextField: TextBlock[] = [
+  {
+    spans: [],
+    text: 'Heading 1',
+    type: Elements.heading1,
+  },
+  {
+    spans: [],
+    text: 'Heading 2',
+    type: Elements.heading2,
+  },
+  {
+    spans: [],
+    text: 'Heading 3',
+    type: Elements.heading3,
+  },
+  {
+    spans: [],
+    text: 'If you add another section over here, it splits into a two column layout! ',
+    type: Elements.paragraph,
+  },
+  {
+    spans: [
+      { start: 12, end: 21, type: 'strong' },
+      { start: 22, end: 31, type: 'strong' },
+      {
+        data: { link_type: 'Web', url: 'https://somethingnew.co', target: '_blank' },
+        end: 58,
+        start: 46,
+        type: 'hyperlink',
+      }],
+    text: 'And text is formatted correctly. You can even insert links and bulleted lists!',
+    type: Elements.paragraph,
+  },
+  {
+    spans: [],
+    text: 'Wow, that\'s neat',
+    type: Elements.listItem,
+  },
+  {
+    spans: [],
+    text: 'Show me more!',
+    type: Elements.listItem,
+  },
+  {
+    text: '',
+    spans: [],
+    alt: 'Alt Text',
+    dimensions: { width: 2048, height: 1024 },
+    type: Elements.image,
+    url: 'https://example.com/image.png',
   },
 ]

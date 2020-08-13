@@ -33,7 +33,7 @@ The `urlResolver` function will return two more functions.
 ```javascript
 import { urlResolver } from '@sntew/prismic'
 
-const routes = {
+const routeMap = {
   home_page: {
     href: '/',
     page: '/',
@@ -49,7 +49,7 @@ const routes = {
   }
 }
 
-export const { linkResolver, hrefResolver}  = urlResolver(routes)
+export const { linkResolver, hrefResolver}  = urlResolver(routeMap)
 ```
 
 #### NavLink.js

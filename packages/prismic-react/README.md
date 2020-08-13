@@ -9,7 +9,7 @@ This package exports:
 - [`SliceZone`](#slicezone) - A component to render slices from Prismic
 - [`usePrismic`](#useprismic) - a hook to access PrismicContext
 - [`useSerializer`](#useserializer) - a hook to create an HTMLSerializer
-- [`htmlSerializerThunk`](#htmlserializerthunk) - A wrapper function to create an HTMLSerializer
+- [`serializeElements`](#serializeElements) - A wrapper function to create an HTMLSerializer
 - `urlResolver` from [@stnew/prismic](/packages/prismic) ([npm](https://www.npmjs.com/package/@stnew/prismic))
 
 ## PrismicContext
@@ -34,18 +34,17 @@ In order for `@stnew/prismic` components to work, you'll need to wrap your App i
 
 ```jsx
 // _app.js
-import { PrismicProvider } from '@stnew/prismic'
+import { PrismicProvider } from '@stnew/prismic-react'
 import { sliceMap } from 'slices'
-import { linkResolver, hrefResolver } from 'lib/prismic'
-import { elementsMap } from 'components/TextField'
+import { routeMap } from 'lib/prismic/routes'
+import { elementsMap } from 'lib/prismic/rich-text'
 
 function App({ Component, pageProps }) {
   return (
     <PrismicProvider
-      slices={sliceMap}
-      linkResolver={linkResolver}
-      hrefResolver={hrefResolver}
-      htmlSerializer={elementsMap}
+      sliceRegistry={sliceMap}
+      urlResolver={routeMap}
+      htmlResolver={elementsMap}
     >
       <Component {...pageProps}>
     </PrismicProvider>
@@ -55,12 +54,11 @@ function App({ Component, pageProps }) {
 
 Prop           | Required | Type
 -------------- | -------- | ---------------------------------------------
-slices         | Yes      | `{ [key: string]: (props: any) => Element }`
-linkResolver   | Yes      | `(doc?: PrismicDoc) => string`
-hrefResolver   | No       | `(doc?: PrismicDoc) => string`
+sliceRegistry         | No      | `{ [key: string]: (props: any) => Element }`
+urlResolver   | No      | [Routes object](/packages/prismic)
 htmlSerializer | No       | `{ [Element]: [React.ReactNode, { ...props }]`
 
-Pass the [`sliceMap`](#slicemap), [`linkResolver`](/packages/prismic), and [`hrefResolver`](/packages/prismic) to their respective props. See the [HTML Serializer](#html-serializer) section to learn more it's usage.
+Pass the [`sliceMap`](#slicemap) and [`routeMap`](/packages/prismic) to their respective props. See the [HTML Serializer](#html-serializer) section to learn more it's usage.
 
 ## SliceZone
 
@@ -233,7 +231,6 @@ const elementsMap = {
   [Elements.heading1]: ['h1', { className: 'heading-1' }],
   [Elements.heading2]: ['h2', { className: 'heading-2' }],
   [Elements.paragraph]: ['p', { className: 'paragraph' }],
-
   [Elements.hyperlink]: [Link, ({ data }) => { href: data.url }]
   [Elements.hyperlink]: ['img', ({ data }) => { href: data.src }]
 }
@@ -246,7 +243,7 @@ function App() {
   return (
     <PrismicProvider
       htmlSerializer={elementsMap}
-      linkResolver={linkResolver}
+      urlResolver={routeMap}
     >
       {...app}
     </PrismicProvider>
@@ -271,11 +268,12 @@ function TextField({ render }) {
 
 ### useHtmlSerializer
 
-If you only need to use the HTML serializer in one component, it might make sense to use it as a hook
+If you only need to use the HTML serializer in one component, you can use it as a hook.
 
 ```js
 import { RichText } from 'prsimic-reactjs'
-import { elementsMap } from 'lib/prismic/serializer'
+import { elementsMap } from 'lib/prismic/rich-text'
+import { linkResolver } from 'lib/prismic/resolvers'
 import { useHtmlSerializer } from '@stnew/prismic-react'
 
 function TextField({ render }) {
@@ -289,13 +287,13 @@ function TextField({ render }) {
 }
 ```
 
-### htmlSerializerThunk
+### serializeElements
 
-Besides a hook or provider, you can export the wrapper function that creates the serializer function.
+If you don't want to use a hook or provider, you can export the wrapper function that creates the serializer.
 
 ```js
 import { elementsMap } from 'lib/prismic/serializer'
-import { useHtmlSerializer } from '@stnew/prismic-react'
+import { serializeElements } from '@stnew/prismic-react'
 
-const htmlSerializer = htmlSerializerThunk(elementMap)
+const htmlSerializer = serializeElements(elementMap)
 ```

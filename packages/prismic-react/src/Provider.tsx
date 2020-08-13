@@ -1,24 +1,25 @@
 import React from 'react'
 import PrismicContext from './Context'
 import { Provider, Context } from './types'
-import serializerThunk from './utils/serializerThunk'
+import serializeElements from './serializeElements'
+import { urlResolver } from '@stnew/prismic'
 
 const PrismicProvider: React.FC<Provider> = ({
-  slices,
-  linkResolver,
-  hrefResolver,
-  htmlSerializer,
+  sliceRegistry,
+  urlResolver: routeMap,
+  htmlSerializer: elementsMap,
   children,
 }) => {
 
-  const sliceMap = new Map(Object.entries(slices || {}))
-  const serializedHtml = serializerThunk(htmlSerializer || {})
+  const sliceMap = new Map(Object.entries(sliceRegistry || {}))
+  const htmlSerializer = serializeElements(elementsMap || {})
+  const { linkResolver, hrefResolver } = urlResolver(routeMap || {})
 
   const value: Context = {
     sliceMap,
     linkResolver,
     hrefResolver,
-    htmlSerializer: serializedHtml,
+    htmlSerializer,
   }
 
   return (
