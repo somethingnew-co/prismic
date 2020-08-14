@@ -53,3 +53,24 @@ export interface Routes {
 export interface Resolver {
   (routes: Routes): LinkResolver
 }
+
+export type PrismicBoolean = boolean
+
+export type PrismicDate = string
+
+export type PrismicTimestamp = string
+
+export type PrismicSelect = string
+
+export type PrismicGeopoint = { latitude: number, longitude: number }
+
+export type PrismicColor = string
+
+export type PrismicNumber = number
+
+export type PrismicImage = {
+  alt: string | null
+  copyright: string | null
+  dimensions: { width: number, height: number }
+  url: string
+}
