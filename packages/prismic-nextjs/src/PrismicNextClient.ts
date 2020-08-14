@@ -29,14 +29,14 @@ export class PrismicNextClient {
     this.fallback = false
   }
 
-  getSingle(type: string, clientOptions = {}): this {
+  getSingle(type: string, clientOptions = {}, propName?: string): this {
     const props: GetStaticProps = async () => {
       const page = await this.client.getSingle(type, clientOptions)
       const { data } = page
 
       return {
         props: {
-          [type]: data,
+          [propName || type]: data,
         },
       }
     }
@@ -46,7 +46,7 @@ export class PrismicNextClient {
     return this
   }
 
-  getRepeatable(options: Options, clientOptions?: QueryOptions): this {
+  getRepeatable(options: Options, clientOptions?: QueryOptions, propName?: string): this {
     const {
       type,
       param,
@@ -75,7 +75,7 @@ export class PrismicNextClient {
 
       return {
         props: {
-          [type]: data,
+          [propName || type]: data,
           preview,
         },
       }
@@ -126,7 +126,8 @@ export class PrismicNextClient {
       )
 
       if (rootUid) {
-        paths.push({ params: { [param]: [''] } })
+        // Add empty item to paths to handle root url
+        paths.unshift({ params: { [param]: [] } })
       }
 
       return {
