@@ -13,6 +13,7 @@
   "repository": "git@github.com:somethingnew-co/prismic.git",
   "homepage": "https://github.com/somethingnew-co/prismic#readme",
   "devDependencies": {
+    "@apollo/client": "^3.2.7",
     "@stnew/eslint-config": "^0.3.0",
     "@stnew/eslint-config-typescript": "^0.3.0",
     "@testing-library/jest-dom": "^5.11.2",
@@ -25,6 +26,7 @@
     "eslint": "^7.6.0",
     "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-react-hooks": "^4.0.8",
+    "graphql": "^15.4.0",
     "jest": "^26.2.2",
     "lerna": "^3.22.1",
     "next": "^9.5.1",

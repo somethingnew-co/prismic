@@ -32,6 +32,7 @@
   },
   "rules": {
     "semi": ["error", "never"],
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "multiline-comment-style": "off"
   }
 }

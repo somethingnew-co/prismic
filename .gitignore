@@ -4,5 +4,8 @@ out
 dist
 packages/**/package-lock.json
 
+# jest
+coverage
+
 # OS Junk
 .DS_Store

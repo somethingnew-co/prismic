@@ -1,0 +1,24 @@
+{
+  "name": "@stnew/prismic-apollo-link",
+  "version": "1.0.0",
+  "description": "An ApolloLink to connect to Prismic's GraphQL API",
+  "main": "dist/index",
+  "types": "dist/index",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run clean && npm run compile",
+    "clean": "rm -rf ./dist",
+    "compile": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Something New",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {
+    "prismic-javascript": ">= 3.0.1",
+    "@apollo/client": ">= 3.2.7"
+  }
+}
