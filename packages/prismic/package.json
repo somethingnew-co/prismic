@@ -16,6 +16,9 @@
   },
   "author": "Something New",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@stnew/prismic-types": "^1.2.0"
   }

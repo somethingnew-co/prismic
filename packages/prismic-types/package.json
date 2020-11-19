@@ -6,5 +6,8 @@
   "types": "index",
   "scripts": {},
   "author": "Something New",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }

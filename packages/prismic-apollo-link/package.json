@@ -16,6 +16,9 @@
   },
   "author": "Something New",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@apollo/client": ">= 3.2.7",
     "prismic-javascript": ">= 3.0.1"
