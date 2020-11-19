@@ -1,6 +1,6 @@
 {
   "name": "@stnew/prismic-apollo-link",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "An ApolloLink to connect to Prismic's GraphQL API",
   "main": "dist/index",
   "types": "dist/index",
@@ -16,9 +16,8 @@
   },
   "author": "Something New",
   "license": "MIT",
-  "dependencies": {},
   "peerDependencies": {
-    "prismic-javascript": ">= 3.0.1",
-    "@apollo/client": ">= 3.2.7"
+    "@apollo/client": ">= 3.2.7",
+    "prismic-javascript": ">= 3.0.1"
   }
 }
