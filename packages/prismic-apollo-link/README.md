@@ -50,10 +50,10 @@ const { data } = await prismicClient.query({
 ### Handling Previews
 
 The `prismicApolloLink` takes a second argument which handles preview refs from Prismic. You can handle
-this case by making your client a function that accepts the preview data as an arguement.
+this case by making your client a function that accepts the preview data as an argument.
 
 ```js
-export function PrismicClient({ previewData }) {
+export function prismicClient({ previewData }) {
   return new ApolloClient({
     cache: new InMemoryCache(),
     link: prismicApolloLink({
@@ -70,7 +70,7 @@ And for example, in Next.js you would pass this data to the client.
 
 ```js
 export async function getStaticProps({ params, preview = false, previewData }) {
-  const { data } = await prismicClient({ previewData }).query({
+  const response = await prismicClient({ previewData }).query({
     query: gql`
       query($lang: String!, $uid: String!) {
         blog(lang: $lang, uid: $uid) {
@@ -83,6 +83,8 @@ export async function getStaticProps({ params, preview = false, previewData }) {
       lang: 'en-us',
     },
   })
+
+  const data = response.data.blog
 
   return {
     props: {

@@ -19,6 +19,7 @@ This repo conatins four packages, but you only need to install one based on your
   - `*` from `@stnew/prismic`
   - `*` from `@stnew/prismic-react`
 - [@stnew/prismic-types] - TypesScript types for Prisimic data
+- [@stnew/prismic-apollo-link] - An ApolloLink to connect to Prismic's GraphQL API
 
 The core package is `@stnew/prismic`:
 
@@ -38,7 +39,8 @@ If you're only using Next.js:
 npm install @stnew/prismic-nextjs
 ```
 
-The [prismic-types](/packages/prismic-types) package is optional and only necessary if your project is using TypeScript.
+The [prismic-types](/packages/prismic-types) package is optional and only
+necessary if your project is using TypeScript.
 
 ```sh
 npm install typescript @stnew/prismic-nextjs @stnew/prismic-types
@@ -48,7 +50,12 @@ npm install typescript @stnew/prismic-nextjs @stnew/prismic-types
 
 There are a lot of ways to access Prismic's API, read [our simple setup guide](docs/connect-to-prismic.md) or the the [official documentation](https://prismic.io/docs) to learn more about Prismic client.
 
+If you are using Prismic's GraphQL API with Apollo, you can use the
+[@stnew/prismic-apollo-link] middleware to easily connect ApolloClient to query
+the API.
+
 [@stnew/prismic]: /packages/prismic
 [@stnew/prismic-react]: /packages/prismic-react
 [@stnew/prismic-nextjs]: /packages/prismic-nextjs
 [@stnew/prismic-types]: /packages/prismic-types
+[@stnew/prismic-apollo-link]: /packages/prismic-apollo-link
