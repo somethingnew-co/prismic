@@ -164,13 +164,13 @@ export const richTextField: TextBlock[] = [
   },
   {
     spans: [
-      { start: 12, end: 21, type: 'strong' },
-      { start: 22, end: 31, type: 'strong' },
+      { start: 12, end: 21, type: Elements.strong },
+      { start: 22, end: 31, type: Elements.strong },
       {
         data: { link_type: 'Web', url: 'https://somethingnew.co', target: '_blank' },
         end: 58,
         start: 46,
-        type: 'hyperlink',
+        type: Elements.hyperlink,
       }],
     text: 'And text is formatted correctly. You can even insert links and bulleted lists!',
     type: Elements.paragraph,

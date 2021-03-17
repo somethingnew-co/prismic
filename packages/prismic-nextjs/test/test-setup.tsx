@@ -27,6 +27,9 @@ const mockRouter: NextRouter = {
     emit: jest.fn(),
   },
   isFallback: false,
+  isLocaleDomain: false,
+  isReady: false,
+  isPreview: false,
 }
 
 export function renderWithPrismicProvider(component: RenderUI):RenderResult {
