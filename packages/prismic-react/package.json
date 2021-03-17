@@ -1,6 +1,6 @@
 {
   "name": "@stnew/prismic-react",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Prismic components and utilities for React",
   "main": "dist/index",
   "types": "dist/index",

@@ -1,6 +1,6 @@
 {
   "name": "@stnew/prismic-nextjs",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Prismic components and utilities for Next.js",
   "main": "dist/index",
   "types": "dist/index",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@stnew/prismic": "^1.2.1",
-    "@stnew/prismic-react": "^1.2.1",
+    "@stnew/prismic-react": "^1.2.2",
     "@stnew/prismic-types": "^1.2.1"
   }
 }
