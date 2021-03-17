@@ -1,4 +1,4 @@
-import { GetStaticProps, GetStaticPaths } from 'next'
+import { GetStaticProps, GetStaticPropsContext, GetStaticPaths, GetStaticPathsContext } from 'next'
 import { default as PrismicJS } from 'prismic-javascript'
 import { DefaultClient } from 'prismic-javascript/types/client'
 import { Document } from 'prismic-javascript/types/documents'
@@ -153,16 +153,27 @@ export class PrismicNextClient {
   }
 }
 
-const propsReducer = (p: Props) => async (acc: Promise<Props>, current: GetStaticProps): Promise<Props> => {
+const propsReducer = (ctx: GetStaticPropsContext) => async (acc: Promise<Props>, current: GetStaticProps): Promise<Props> => {
+  let props = {}
   const allProps = await acc
-  const { props } = await current(p)
+  const currentProps = await current(ctx)
+
+  if ('props' in currentProps) {
+    ({ props } = currentProps)
+  }
   return { ...allProps, ...props }
 }
 
 type PathAcc = Promise<Path[]>
-const pathsReducer = async (acc: PathAcc, current: GetStaticPaths): Promise<Path[]> => {
+const pathsReducer = (ctx: GetStaticPathsContext) => async (acc: PathAcc, current: GetStaticPaths): Promise<Path[]> => {
+  let paths: Path[] = []
   const allPaths = await acc
-  const { paths } = await current()
+  const currentPaths = await current(ctx)
+
+  if ('paths' in currentPaths) {
+    ({ paths } = currentPaths)
+  }
+
   return [...allPaths, ...paths]
 }
 
