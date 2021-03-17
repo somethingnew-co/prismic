@@ -20,9 +20,9 @@
     "access": "public"
   },
   "peerDependencies": {
-    "next": "^9.5.0",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1"
+    "next": ">= 9.5.0",
+    "react": ">= 16.8.1",
+    "react-dom": ">= 16.8.1"
   },
   "dependencies": {
     "@stnew/prismic": "^1.2.1",
