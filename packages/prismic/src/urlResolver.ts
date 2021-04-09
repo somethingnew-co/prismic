@@ -29,6 +29,10 @@ function urlResolver(routes: Routes): Resolvers {
 
       const route = routes[doc.type]
 
+      if (!route) {
+        return '/'
+      }
+
       if (key === 'href') {
         return withUID(doc, route)
       }
