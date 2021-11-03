@@ -74,3 +74,19 @@ export type PrismicImage = {
   dimensions: { width: number, height: number }
   url: string
 }
+
+export type PrismicIntegrationField<BlobType> = {
+  id: string
+  title: string
+  description: string
+  image_url: string
+  last_update: number
+  blob: BlobType
+}
+
+export type PrismicIntegrationFields<BlobType> = PrismicIntegrationField<BlobType>[]
+
+export type PrismicIntegrationFieldAPIResponse<BlobType> = {
+  results_size: number
+  results: PrismicIntegrationFields<BlobType>
+}
