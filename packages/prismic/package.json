@@ -1,6 +1,6 @@
 {
   "name": "@stnew/prismic",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Prismic components and utilities for React",
   "main": "dist/index",
   "types": "dist/index",
@@ -20,6 +20,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@stnew/prismic-types": "^1.2.4"
+    "@stnew/prismic-types": "^1.2.6"
   }
 }
